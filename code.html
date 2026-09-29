@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: "#1c4d8b",
+              secondary: "#2f5371",
+              teal: "#699c9b",
+              light: "#a3cff0",
+              surface: "#e0e4ea",
+              bg: "#f6f9ff"
+            }
+          },
+          fontFamily: {
+            heading: ["Plus Jakarta Sans", "sans-serif"],
+            body: ["Plus Jakarta Sans", "sans-serif"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Keyframes & Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes ambientBreathe {
+      0%, 100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.18;
+      }
+      50% {
+        transform: scale(1.1) translate(15px, -10px);
+        opacity: 0.28;
+      }
+    }
+
+    @keyframes watermarkPulse {
+      0%, 100% {
+        opacity: 0.08;
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        opacity: 0.14;
+        transform: scale(1.03) rotate(-1deg);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+      }
+    }
+
+    .reveal-item {
+      animation: fadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+
+    .animate-gentle-float {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .ambient-glow-1 {
+      animation: ambientBreathe 9s ease-in-out infinite;
+    }
+    .ambient-glow-2 {
+      animation: ambientBreathe 11s ease-in-out infinite reverse;
+    }
+
+    .watermark-drift {
+      animation: watermarkPulse 12s ease-in-out infinite;
+    }
+
+    .pulse-glow-dot {
+      animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Button Shimmer Effect */
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.28) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      transition: all 0.7s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .btn-shimmer:hover::after {
+      left: 130%;
+      opacity: 1;
+    }
+
+    /* Accessibility: Prefers Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::after, ::before {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-brand-bg font-body text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-light/30 selection:text-brand-primary">
+<!-- TOP HEADER -->
+<header class="w-full bg-white/90 backdrop-blur-md border-b border-brand-surface sticky top-0 z-50 transition-all duration-300">
+<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3 transition-transform hover:scale-[1.02] duration-300">
+<img alt="Assistência Segura" class="h-9 md:h-11 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBELJMUk5vAETaAJWedp3rpik2d6gYkbUP1rur_aGlmeAGUoPNGMvf_gdyiuVxm5ZUJMipWkWpIl5uSrrV9QKSE0LTDvUZc8SLOIotQ8W04COnLGehSBLabwtOEUuHI7v-mcakCryLqG18gi5XHmZnemMouZg3X1YrMhgGrBioQP-cFPUzFCVDpbOvXypsAVf3kePt7SX5tvPY2B1R724QaaNYuxO6Lj_o6uDHoOCSOUagY4ClJ-gex_c8_9WxdQqWpQw">
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-brand-bg border border-brand-surface text-slate-700 text-xs font-sans font-medium transition-all hover:border-brand-light">
+<div class="relative flex items-center">
+<img alt="Atendente Online" class="w-6 h-6 rounded-full object-cover border border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYNZMNaOGKRK1f54xSENBt3rrDD-gt61ARr70OBZSkRFdq-zl9l3uVapjq-fS3rSYJ9IgwEchsMpIhnxxHucjpql_VQpNU2duWW6VHYE4GUL995h-lAcpOjdO2Jhd_DkwXwkBd0TqSlnIDaNvAJdTT_CucwYB8mwojdE2-n8l8FgLADw6eqVmLiLHGh_3FMHTOspSQm89vF3Ehd4COUoR52ZHTHCLm1UwlJq-hjMXOMhmxOgyrcr6i">
+<span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 border border-white pulse-glow-dot"></span>
+</div>
+<span class="">Central Ativa</span>
+</div>
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-bg border border-brand-surface text-brand-secondary text-xs font-sans font-semibold tracking-wide uppercase transition-all hover:border-emerald-300">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+        24 Horas
+      </div>
+<a class="btn-shimmer inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-primary text-white text-xs md:text-sm font-sans font-semibold hover:bg-brand-secondary active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md" href="#canais-atendimento">
+<span class="material-symbols-outlined text-base">support_agent</span>
+<span class="">Fale Conosco</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN EDITORIAL CONTENT -->
+<main class="w-full flex-1 flex flex-col justify-center relative overflow-hidden">
+<!-- Ambient Subtle Background Elements -->
+<div class="ambient-glow-1 absolute -top-40 right-0 w-[550px] h-[550px] bg-brand-light/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="ambient-glow-2 absolute -bottom-32 -left-20 w-[450px] h-[450px] bg-brand-teal/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-5xl mx-auto px-6 py-12 md:py-20 relative z-10 w-full">
+<!-- HERO HEADLINE & CORE STATEMENT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center mb-16 md:mb-20">
+<div class="lg:col-span-7 space-y-6 text-left reveal-item">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface/60 border border-brand-light/40 text-brand-primary text-xs md:text-sm font-sans font-semibold transition-all hover:bg-white hover:border-brand-primary/40">
+<img alt="Logo Icon" class="w-4 h-4 object-contain inline-block" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5bafr2ahQwuCI5Kw85POITW-szLXkuDvruRMLIV-m0aQLAhZfkfxa9SR9NeQ_lx6sY_EDYhVI7SrDcv46-biHL4U2n6a86C0u9OQKfC1fG05nH06o5ZULchAmyJnkOWxFuG6Sit-VvSxrI4-3hEzr0N8_ADi2vXcWHN3koiaQBDmZp2gdPjh_eZAARAakerW1Xc0NeTyCCQK2M1IfaPmY5h3ljGy7Fa5CU-vsRgmG8OKX_IL2pF2o_H7LH8PO2u_bBQ">
+<span class="">Sobre nós</span>
+</div>
+<h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brand-primary tracking-tight leading-[1.15]">
+          A assistência certa para as suas <span class="text-brand-secondary underline decoration-brand-light decoration-4 underline-offset-8">24 horas</span>
+</h1>
+<p class="text-lg md:text-xl text-slate-700 leading-relaxed font-normal">
+          Somos a <strong class="font-bold text-brand-primary">Assistência Segura</strong>, uma empresa especializada na gestão de assistências para seguradoras e empresas de diferentes segmentos.
+        </p>
+<div class="pt-2 flex flex-wrap gap-3">
+<a class="btn-shimmer inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-primary text-white font-sans font-semibold text-sm hover:bg-brand-secondary active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md" href="#canais-atendimento">
+<span class="material-symbols-outlined text-lg">phone_in_talk</span>
+            Canais de Atendimento
+          </a>
+<div class="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white border border-brand-surface text-slate-700 text-sm font-sans font-medium transition-all hover:border-brand-light/70">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+            Prontidão 24h / 7 dias
+          </div>
+</div>
+</div>
+<div class="lg:col-span-5 relative reveal-item delay-200">
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-brand-surface bg-white group hover:shadow-2xl transition-all duration-500">
+<img alt="Equipe de Atendimento Assistência Segura" class="w-full h-80 lg:h-[420px] object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADoZYxEiA39_3AE-jkC5qH6amEV4mKpbqXKDKTy0ifZttPYVGdzCExj7Ti0xaBsbVmTOdUE67vjQlHJcRjf1eXGeInVGY-1CGBE79URVnJkUObbR-QrZGp9-vjzwQMZle-ApnTBPAe2-sFl1wEV9AB9HiAilfAKguy_jLxrIwwgVBdMLxynGdUxRj135AlN00ZzU9Kj9MQHSwrXGLVKUgsTLKGkKyCgov7tTy94KzmQcIs_rVeGpmN">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-primary/60 via-transparent to-transparent"></div>
+<div class="animate-gentle-float absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-white/60 shadow-md flex items-center gap-3 transition-transform">
+<img alt="Especialista Assistência Segura" class="w-10 h-10 rounded-full object-cover border-2 border-brand-primary flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYNZMNaOGKRK1f54xSENBt3rrDD-gt61ARr70OBZSkRFdq-zl9l3uVapjq-fS3rSYJ9IgwEchsMpIhnxxHucjpql_VQpNU2duWW6VHYE4GUL995h-lAcpOjdO2Jhd_DkwXwkBd0TqSlnIDaNvAJdTT_CucwYB8mwojdE2-n8l8FgLADw6eqVmLiLHGh_3FMHTOspSQm89vF3Ehd4COUoR52ZHTHCLm1UwlJq-hjMXOMhmxOgyrcr6i">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 pulse-glow-dot"></span>
+<p class="text-xs font-bold text-brand-primary uppercase tracking-wide">Suporte Humano &amp; Ágil 24/7</p>
+</div>
+<p class="text-xs text-slate-600 truncate">Gestão dedicada e acolhedora</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TEXT SECTIONS / EDITORIAL PRESENTATION -->
+<div class="space-y-6 md:space-y-8">
+<!-- Block 2: Solutions -->
+<div class="grid grid-cols-1 gap-6 md:gap-8 reveal-item delay-200">
+<div class="group bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-brand-surface hover:border-brand-light hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+<div class="w-12 h-12 rounded-xl bg-brand-bg flex items-center justify-center text-brand-secondary border border-brand-surface flex-shrink-0 group-hover:scale-110 group-hover:bg-brand-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</div>
+<div class="space-y-2">
+<h3 class="text-lg md:text-xl font-heading font-bold text-brand-primary group-hover:text-brand-secondary transition-colors">Portfólio Completo de Soluções</h3>
+<p class="text-base md:text-lg text-slate-700 leading-relaxed font-normal">Contamos com um portfólio completo de soluções para atender diferentes necessidades, sempre com o objetivo de oferecer suporte quando o imprevisto acontece.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Block 3: Full Journey -->
+<div class="group bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-brand-surface hover:border-brand-light hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 reveal-item delay-300">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+<div class="md:col-span-7 space-y-4">
+<div class="w-12 h-12 rounded-xl bg-brand-bg flex items-center justify-center text-brand-teal border border-brand-surface group-hover:scale-110 group-hover:bg-brand-teal group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">hub</span>
+</div>
+<h3 class="text-lg md:text-xl font-heading font-bold text-brand-primary group-hover:text-brand-secondary transition-colors">Jornada Completa e Integrada</h3>
+<p class="text-base md:text-lg text-slate-700 leading-relaxed font-normal">
+              Nossa atuação acompanha toda a jornada do atendimento: desde a abertura do chamado até a execução do serviço, conectando pessoas, parceiros e soluções para tornar cada atendimento mais simples e eficiente.
+            </p>
+</div>
+<div class="md:col-span-5">
+<div class="rounded-xl overflow-hidden border border-brand-surface relative shadow-sm">
+<img alt="Assistência e socorro rápido aos motoristas e clientes" class="w-full h-56 md:h-64 object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrGSP1PwD3zQN0sWEmJoN2x6ZeftB4BOvx1pBlUDnKlpJ3XMcgNJ8PS83eBWS4sn7ra7WiRMZZwLxsDx16bjQvBBSdVOBXDeBKqhhjB-rRPbNqk6Q3gjJNUZo9oLNkLnbFR_D5M7Vz_A9pPedKUQUbOzg_NGhAA91tJzJDdtJfdCIsE5DFwZDP7Vf3UjAruRX9t1pmJC-jk0PNyTEPxd7KS9b7x1SpQzIIsKOixI2Xez3tQnGpab2p">
+<div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-sans font-semibold text-brand-secondary flex items-center gap-1.5 shadow-xs">
+<span class="material-symbols-outlined text-sm text-brand-teal">build_circle</span>
+<span class="">Presença &amp; Cuidado Real</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Block 4: Commitment & Values -->
+<div class="bg-gradient-to-br from-brand-bg via-white to-brand-surface/30 rounded-2xl p-8 md:p-12 shadow-sm border border-brand-surface space-y-8 reveal-item delay-400">
+<div class="max-w-3xl mx-auto text-center space-y-4">
+<span class="text-xs uppercase font-sans font-bold tracking-widest text-brand-secondary">Compromisso</span>
+<p class="text-xl md:text-2xl text-brand-primary font-medium leading-relaxed">
+            Mais do que prestar um serviço, nosso compromisso é estar presente quando nossos clientes mais precisam, com agilidade, cuidado e segurança.
+          </p>
+<p class="font-heading text-lg font-bold text-brand-secondary tracking-wide">Assistência Segura.</p>
+</div>
+<!-- Highlight Badges from verbatim values -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto pt-2">
+<!-- Agilidade -->
+<div class="group bg-white/80 rounded-2xl p-6 text-center border border-brand-surface shadow-xs flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-brand-primary/40 hover:-translate-y-1.5 hover:shadow-xl">
+<div class="w-12 h-12 rounded-full bg-brand-light/30 flex items-center justify-center text-brand-primary flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-primary group-hover:text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="space-y-1">
+<span class="font-heading font-bold text-brand-primary tracking-wide text-lg block group-hover:text-brand-primary transition-colors">Agilidade</span>
+<span class="text-xs text-slate-500 font-sans block">Prontidão e resposta rápida</span>
+</div>
+</div>
+<!-- Cuidado -->
+<div class="group bg-white/80 rounded-2xl p-6 text-center border border-brand-surface shadow-xs flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-brand-teal/50 hover:-translate-y-1.5 hover:shadow-xl">
+<div class="w-12 h-12 rounded-full bg-brand-teal/15 flex items-center justify-center text-brand-teal flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-teal group-hover:text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="space-y-1">
+<span class="font-heading font-bold text-brand-teal tracking-wide text-lg block group-hover:text-brand-teal transition-colors">Cuidado</span>
+<span class="text-xs text-slate-500 font-sans block">Atenção humana e dedicação</span>
+</div>
+</div>
+<!-- Segurança -->
+<div class="group bg-white/80 rounded-2xl p-6 text-center border border-brand-surface shadow-xs flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:border-brand-secondary/50 hover:-translate-y-1.5 hover:shadow-xl">
+<div class="w-12 h-12 rounded-full bg-brand-secondary/10 flex items-center justify-center text-brand-secondary flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-secondary group-hover:text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="space-y-1">
+<span class="font-heading font-bold text-brand-secondary tracking-wide text-lg block group-hover:text-brand-secondary transition-colors">Segurança</span>
+<span class="text-xs text-slate-500 font-sans block">Proteção e total confiança</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Canais de Atendimento -->
+<div class="space-y-6 pt-4 reveal-item delay-500" id="canais-atendimento">
+<div class="text-center max-w-2xl mx-auto space-y-2">
+<span class="text-xs uppercase font-sans font-bold tracking-widest text-brand-secondary">Fale Conosco</span>
+<h3 class="font-heading text-2xl md:text-3xl font-bold text-brand-primary tracking-tight">Canais de Atendimento</h3>
+<p class="text-base text-slate-500 font-normal">Contamos com um portfólio completo de soluções para atender diferentes necessidades, sempre com o objetivo de oferecer suporte quando o imprevisto acontece.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+<!-- Canal 2: Secundário -->
+<div class="group bg-white rounded-2xl p-6 shadow-sm border border-brand-surface hover:border-brand-primary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="w-11 h-11 rounded-xl bg-brand-bg flex items-center justify-center text-brand-secondary border border-brand-surface group-hover:bg-brand-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">call</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-brand-surface text-brand-secondary text-xs font-sans font-semibold tracking-wide">Secundário</span>
+</div>
+<h4 class="text-xs uppercase font-sans font-semibold text-slate-500 tracking-wider mb-1">Linha de Apoio</h4>
+<a class="font-heading text-xl md:text-2xl font-bold text-slate-800 hover:text-brand-primary transition-colors" href="tel:08000420800">0800 042 0800</a>
+</div>
+<p class="text-xs text-slate-500 mt-3 pt-3 border-t border-brand-surface">Canal alternativo de suporte 24h</p>
+</div>
+<!-- Canal 3: Anual -->
+<div class="group bg-white rounded-2xl p-6 shadow-sm border border-brand-surface hover:border-brand-teal/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="w-11 h-11 rounded-xl bg-brand-bg flex items-center justify-center text-brand-teal border border-brand-surface group-hover:bg-brand-teal group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">phone_in_talk</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-brand-teal/15 text-brand-teal text-xs font-sans font-semibold tracking-wide">Anual</span>
+</div>
+<h4 class="text-xs uppercase font-sans font-semibold text-slate-500 tracking-wider mb-1">Assistência Anual</h4>
+<a class="font-heading text-xl md:text-2xl font-bold text-slate-800 hover:text-brand-primary transition-colors" href="tel:08000421022">0800 042 1022</a>
+</div>
+<p class="text-xs text-slate-500 mt-3 pt-3 border-t border-brand-surface">Linha de planos anuais e coberturas</p>
+</div>
+<!-- Canal 4: WhatsApp -->
+<div class="group bg-white rounded-2xl p-6 shadow-sm border border-brand-surface hover:border-emerald-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">chat</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-sans font-semibold tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse-glow-dot"></span> WhatsApp
+                </span>
+</div>
+<h4 class="text-xs uppercase font-sans font-semibold text-slate-500 tracking-wider mb-1">Atendimento via WhatsApp</h4>
+<a class="font-heading text-xl md:text-2xl font-bold text-slate-800 hover:text-emerald-700 transition-colors" href="https://wa.me/553139725001" rel="noopener noreferrer" target="_blank">(31) 3972-5001</a>
+</div>
+<p class="text-xs text-slate-500 mt-3 pt-3 border-t border-brand-surface">Atendimento exclusivo por mensagem no WhatsApp</p>
+</div>
+<!-- Canal 5: Central Administrativa -->
+<div class="group bg-white rounded-2xl p-6 shadow-sm border border-brand-surface hover:border-brand-primary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between md:col-span-2 lg:col-span-2">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="w-11 h-11 rounded-xl bg-brand-bg flex items-center justify-center text-brand-primary border border-brand-surface group-hover:bg-brand-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">domain</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-brand-surface text-brand-secondary text-xs font-sans font-semibold tracking-wide">Administrativo</span>
+</div>
+<h4 class="text-xs uppercase font-sans font-semibold text-slate-500 tracking-wider mb-1">Central de Atendimentos</h4>
+<a class="font-heading text-xl md:text-2xl font-bold text-slate-800 hover:text-brand-primary transition-colors" href="tel:03139725000">(31) 3972-5000</a>
+</div>
+<p class="text-xs text-slate-500 mt-3 pt-3 border-t border-brand-surface">Assuntos administrativos, comerciais e institucionais</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-[#16365c] text-white pt-16 pb-8 border-t border-[#224873] relative overflow-hidden">
+<div class="watermark-drift absolute -right-12 -bottom-16 w-80 h-80 pointer-events-none filter brightness-0 invert">
+<img alt="Assistência Segura Monograma" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW-GdG327707cG08h-TVp8cb2I7e4PPaOfqfXEtnGMBCbetsZD6_A1g35X8130QYlgzZ2bWApycXxyQws-FvquRC81s6glikqOlu2epvbuApLYsr9KOSXUJ8i6gAS7AufaFRgTG4wFWMVp8FontCQlzBe4AgRQgaqK6vE7mOnBc_j-lqvTa5Hf7IqI-BfYjtlU7z0l0vPcR4l5wzY8NFtDNomoeDgT5jYq1zAUouRj47XHksSZmWmqRHdlGlne6O_09w">
+</div>
+<div class="max-w-6xl mx-auto px-6 relative z-10">
+<div class="pb-12 border-b border-white/10 flex flex-col items-center justify-center text-center"><p class="text-lg md:text-xl font-heading font-medium text-slate-200 tracking-tight leading-snug text-center">A assistência certa para as suas 24 horas.</p></div>
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-slate-400">
+<p class=""><span class="">© 2025 ASSISTENCIA SEGURA LTDA</span> • <span class="text-slate-400">CNPJ: 64.216.357/0001-94</span> • <span class="">Todos os direitos reservados.</span></p>
+<p class="text-center sm:text-right text-slate-400">Gestão especializada de assistências 24h • Prontidão e confiabilidade.</p>
+</div>
+</div>
+</footer>
+</body></html>
